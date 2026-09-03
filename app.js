@@ -9,6 +9,8 @@ const output = document.getElementById("output");
 const stats = document.getElementById("stats");
 const copyBtn = document.getElementById("copy");
 const downloadBtn = document.getElementById("download");
+const curlCode = document.getElementById("curl");
+const copyCurlBtn = document.getElementById("copyCurl");
 
 // Generation runs entirely in the browser, so the page costs zero function
 // invocations. The /api endpoint exists for other tools, not for this UI.
@@ -30,17 +32,35 @@ function render() {
     }
   }
 
+  renderCurl();
+
   const words = paragraphs.join(" ").split(/\s+/).filter(Boolean).length;
   const chars = toText(paragraphs).length;
   stats.textContent = `${paragraphs.length} paragraphs · ${words} words · ${chars} characters`;
+}
+
+function paragraphCount() {
+  return Math.min(Math.max(parseInt(countInput.value, 10) || 1, 1), MAX_PARAGRAPHS);
+}
+
+// The API sits on the same origin once deployed; opened from a file:// path
+// there is no origin worth printing, so name the eventual host instead.
+function renderCurl() {
+  const base = location.protocol.startsWith("http") ? location.origin : "https://your-site.netlify.app";
+  const params = new URLSearchParams({
+    paragraphs: String(paragraphCount()),
+    format: asHtmlInput.checked ? "html" : "text"
+  });
+  if (!startWithInput.checked) params.set("startWithLorem", "false");
+  if (brainrotInput.checked) params.set("brainrot", "true");
+  curlCode.textContent = `curl "${base}/api/ipsum?${params}"`;
 }
 
 function currentText() {
   return asHtmlInput.checked ? toHtml(paragraphs) : toText(paragraphs);
 }
 
-async function copy() {
-  const text = currentText();
+async function writeClipboard(text) {
   try {
     await navigator.clipboard.writeText(text);
   } catch {
@@ -56,7 +76,16 @@ async function copy() {
     document.execCommand("copy");
     scratch.remove();
   }
+}
+
+async function copy() {
+  await writeClipboard(currentText());
   flash(copyBtn, "Copied!");
+}
+
+async function copyCurl() {
+  await writeClipboard(curlCode.textContent);
+  flash(copyCurlBtn, "Copied!");
 }
 
 function download() {
@@ -88,6 +117,11 @@ form.addEventListener("submit", (event) => {
 asHtmlInput.addEventListener("change", render);
 copyBtn.addEventListener("click", copy);
 downloadBtn.addEventListener("click", download);
+copyCurlBtn.addEventListener("click", copyCurl);
+
+// The snippet mirrors the form, so it follows every keystroke rather than
+// waiting for the next bake.
+form.addEventListener("input", renderCurl);
 
 // Shareable links: /?paragraphs=8 pre-fills the form.
 const params = new URLSearchParams(location.search);

@@ -43,11 +43,15 @@ python3 -m http.server 8000    # then open http://localhost:8000
 ```
 
 To exercise the function too, use the Netlify CLI (this also wires up the
-`/api/ipsum` redirect):
+`/api/ipsum` redirect). It serves on a different port than the static server
+above:
 
 ```bash
-netlify dev
+npx netlify-cli dev    # then open http://localhost:8888
 ```
+
+The CLI needs **Node 22.13+**. On anything older the install fails with
+`EBADENGINE` and nothing is cached, so `npx` re-prompts to install on every run.
 
 Run the tests with:
 
@@ -74,6 +78,9 @@ browser. Output is random per request and therefore sent with `Cache-Control: no
 ```bash
 curl "https://your-site.netlify.app/api/ipsum?paragraphs=2&format=text"
 ```
+
+The site's **Use the API** panel builds this command from whatever the form is
+currently set to, with a button to copy it.
 
 ```json
 {
