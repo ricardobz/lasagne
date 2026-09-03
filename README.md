@@ -96,6 +96,7 @@ Errors return `400` with `{ "error": "..." }`.
 ```
 index.html                    markup
 styles.css                    styles (light + dark)
+fonts/                        self-hosted Yesteryear (display face, OFL)
 app.js                        browser UI wiring
 src/words.js                  word banks (kitchen Italian + optional brainrot)
 src/generator.js              shared generation logic
