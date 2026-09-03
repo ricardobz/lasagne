@@ -17,7 +17,17 @@ export const WORDS = [
   "saporito", "delizioso", "generoso", "caldo", "fumante", "dorato",
   "riposare", "tagliare", "servire", "impastare", "stendere", "infornare",
   "emilia", "romagna", "bologna", "napoli", "sicilia", "toscana",
-  "trattoria", "osteria", "cucina", "ricetta", "segreto", "tradizione"
+  "trattoria", "osteria", "cucina", "ricetta", "segreto", "tradizione",
+
+  // The everyday Italian everyone knows, food-adjacent or not.
+  "ciao", "salve", "prego", "grazie", "mille", "scusi",
+  "favore", "buongiorno", "buonasera", "buonanotte", "arrivederci", "pronto",
+  "allora", "ecco", "certo", "davvero", "veramente", "subito",
+  "basta", "forza", "andiamo", "mangia", "piano", "presto",
+  "bravo", "bravissimo", "benissimo", "perfetto", "magnifico", "meraviglioso",
+  "squisito", "gustoso", "appetito", "buon", "cin", "salute",
+  "amore", "amico", "bello", "bella", "dolce", "festa",
+  "mamma", "mia", "molto", "sempre", "grande", "gusto"
 ];
 
 export const OPENERS = [
