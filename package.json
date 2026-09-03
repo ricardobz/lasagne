@@ -1,0 +1,11 @@
+{
+  "name": "lasagna-ipsum",
+  "version": "1.0.0",
+  "description": "Layers of delicious placeholder text.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "netlify dev",
+    "test": "node test/generator.test.js"
+  }
+}

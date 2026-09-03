@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lasagna Ipsum — layered placeholder text</title>
+<meta name="description" content="Lasagna Ipsum generates layers of delicious placeholder text for your designs. Free, fast, no tracking.">
+<meta property="og:title" content="Lasagna Ipsum">
+<meta property="og:description" content="Layers of delicious placeholder text.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍝</text></svg>">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <h1><span class="logo">🍝</span> Lasagna Ipsum</h1>
+  <p class="tagline">Layers of delicious placeholder text.</p>
+</header>
+
+<main>
+  <form class="controls" id="controls">
+    <div class="field">
+      <label for="count">Paragraphs</label>
+      <input type="number" id="count" name="count" value="5" min="1" max="50" inputmode="numeric">
+    </div>
+
+    <div class="field field-check">
+      <input type="checkbox" id="startWith" name="startWith" checked>
+      <label for="startWith">Start with <em>“Lasagna ipsum dolor sit amet”</em></label>
+    </div>
+
+    <div class="field field-check">
+      <input type="checkbox" id="asHtml" name="asHtml">
+      <label for="asHtml">Show as HTML</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Bake it</button>
+  </form>
+
+  <div class="output-bar">
+    <span class="stats" id="stats" aria-live="polite"></span>
+    <div class="output-actions">
+      <button type="button" class="btn" id="copy">Copy</button>
+      <button type="button" class="btn" id="download">Download .txt</button>
+    </div>
+  </div>
+
+  <section class="output" id="output" aria-live="polite"></section>
+
+  <details class="api">
+    <summary>Use the API</summary>
+    <p>Every generation is also available as JSON, so you can pull filler straight into your own tools:</p>
+    <pre><code>GET /api/ipsum?paragraphs=3&amp;format=json
+GET /api/ipsum?paragraphs=3&amp;format=text
+GET /api/ipsum?paragraphs=3&amp;format=html&amp;startWithLorem=false</code></pre>
+    <p class="muted">Max 50 paragraphs per request.</p>
+  </details>
+</main>
+
+<footer class="site-footer">
+  <p>Made with butter, flour and milk. No cookies, no tracking, no analytics.</p>
+</footer>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>
