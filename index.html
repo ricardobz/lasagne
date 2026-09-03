@@ -31,6 +31,11 @@
     </div>
 
     <div class="field field-check">
+      <input type="checkbox" id="brainrot" name="brainrot">
+      <label for="brainrot">Italian brainrot mode <em>(tralalero tralala, bombardiro crocodilo…)</em></label>
+    </div>
+
+    <div class="field field-check">
       <input type="checkbox" id="asHtml" name="asHtml">
       <label for="asHtml">Show as HTML</label>
     </div>
@@ -53,7 +58,8 @@
     <p>Every generation is also available as JSON, so you can pull filler straight into your own tools:</p>
     <pre><code>GET /api/ipsum?paragraphs=3&amp;format=json
 GET /api/ipsum?paragraphs=3&amp;format=text
-GET /api/ipsum?paragraphs=3&amp;format=html&amp;startWithLorem=false</code></pre>
+GET /api/ipsum?paragraphs=3&amp;format=html&amp;startWithLorem=false
+GET /api/ipsum?paragraphs=3&amp;brainrot=true</code></pre>
     <p class="muted">Max 50 paragraphs per request.</p>
   </details>
 </main>

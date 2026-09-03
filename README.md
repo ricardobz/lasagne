@@ -65,7 +65,8 @@ GET /api/ipsum
 | --- | --- | --- |
 | `paragraphs` | `5` | 1–50, clamped |
 | `format` | `json` | `json`, `text`, or `html` |
-| `startWithLorem` | `true` | `false` skips the classic opening line |
+| `startWithLorem` | `true` | `false` skips the classic opening line (brainrot mode then opens with one of its own) |
+| `brainrot` | `false` | `true` stirs the Italian brainrot meme names into the text |
 
 Responses send `Access-Control-Allow-Origin: *`, so you can call it from the
 browser. Output is random per request and therefore sent with `Cache-Control: no-store`.
@@ -89,7 +90,7 @@ Errors return `400` with `{ "error": "..." }`.
 index.html                    markup
 styles.css                    styles (light + dark)
 app.js                        browser UI wiring
-src/words.js                  word bank
+src/words.js                  word banks (kitchen Italian + optional brainrot)
 src/generator.js              shared generation logic
 netlify/functions/ipsum.mjs   serverless API
 test/generator.test.js        generator tests

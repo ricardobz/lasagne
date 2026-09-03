@@ -3,6 +3,7 @@ import { generate, toHtml, toText, MAX_PARAGRAPHS } from "./src/generator.js";
 const form = document.getElementById("controls");
 const countInput = document.getElementById("count");
 const startWithInput = document.getElementById("startWith");
+const brainrotInput = document.getElementById("brainrot");
 const asHtmlInput = document.getElementById("asHtml");
 const output = document.getElementById("output");
 const stats = document.getElementById("stats");
@@ -14,7 +15,7 @@ const downloadBtn = document.getElementById("download");
 let paragraphs = [];
 
 function render() {
-  paragraphs = generate(countInput.value, startWithInput.checked);
+  paragraphs = generate(countInput.value, startWithInput.checked, brainrotInput.checked);
   output.textContent = "";
 
   if (asHtmlInput.checked) {
@@ -96,6 +97,9 @@ if (Number.isFinite(requested)) {
 }
 if (params.get("startWithLorem") === "false") {
   startWithInput.checked = false;
+}
+if (params.get("brainrot") === "true") {
+  brainrotInput.checked = true;
 }
 
 render();

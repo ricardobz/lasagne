@@ -30,9 +30,10 @@ export default async (request) => {
 
   const count = Math.min(Math.max(Number.isFinite(requested) ? requested : 5, 1), MAX_PARAGRAPHS);
   const startWithLorem = params.get("startWithLorem") !== "false";
+  const brainrot = params.get("brainrot") === "true";
   const format = (params.get("format") ?? "json").toLowerCase();
 
-  const paragraphs = generate(count, startWithLorem);
+  const paragraphs = generate(count, startWithLorem, brainrot);
 
   switch (format) {
     case "text":

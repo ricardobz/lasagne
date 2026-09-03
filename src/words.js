@@ -38,4 +38,28 @@ export const OPENERS = [
   "Lasagna ipsum sfoglia sottile"
 ];
 
+// Italian brainrot: the AI-meme creature names. Kept as whole phrases rather
+// than single tokens, since the joke only survives if the name stays intact.
+export const BRAINROT = [
+  "tralalero tralala", "bombardiro crocodilo", "tung tung tung sahur",
+  "lirili larila", "boneca ambalabu", "brr brr patapim",
+  "cappuccino assassino", "ballerina cappuccina", "chimpanzini bananini",
+  "trippi troppi", "bombombini gusini", "frigo camelo",
+  "la vaca saturno saturnita", "glorbo fruttodrillo", "burbaloni luliloli",
+  "trulimero trulicina", "orangutini ananasini", "zibra zubra zibralini",
+  "girafa celeste", "crocodilo potatino", "talpa di ferro",
+  "svinino bombondino", "bobrito bandito", "tigroligre frutonni",
+  "cocofanto elefanto", "rhino toasterino", "blueberrinni octopusini",
+  "graipuss medussi", "bananita dolphinita", "perochello lemonchello",
+  "espresso signora", "tortinni porcinni", "pot hotspot",
+  "u din din din dun", "tric trac baraboom"
+];
+
+export const BRAINROT_OPENERS = [
+  "Tralalero tralala ipsum dolor sit amet",
+  "Bombardiro crocodilo ipsum lasagna",
+  "Tung tung tung sahur ipsum dolor",
+  "Lasagna ipsum brr brr patapim"
+];
+
 export const PUNCTUATION = [".", ".", ".", ".", "!", "?", "..."];
