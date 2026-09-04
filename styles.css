@@ -74,14 +74,21 @@ body {
   color: var(--sauce);
 }
 
-/* The emoji should not scale with the script face. */
+/* The icon rides with the script face without inheriting its metrics. */
 .site-header h1 .logo {
-  font-family: initial;
-  font-size: 0.6em;
-  vertical-align: 0.12em;
+  height: 0.55em;
+  width: auto;
+  vertical-align: 0.04em;
+  margin-right: 0.1em;
 }
 
 .logo { filter: saturate(1.1); }
+
+/* The icon is drawn with a near-black outline, which all but vanishes on the
+   dark background, so lift it with a light halo. */
+@media (prefers-color-scheme: dark) {
+  .logo { filter: saturate(1.1) drop-shadow(0 0 1px rgba(242, 231, 219, 0.6)); }
+}
 
 .tagline {
   margin: 0.35rem 0 0;
@@ -231,4 +238,9 @@ main { max-width: 46rem; margin: 0 auto; }
   font: 0.82rem system-ui, -apple-system, sans-serif;
   color: var(--muted);
   text-align: center;
+}
+
+.site-footer .credit {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
 }
