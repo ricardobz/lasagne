@@ -66,6 +66,17 @@ body {
   font: 16px/1.65 Georgia, "Iowan Old Style", "Times New Roman", serif;
 }
 
+/* No link styling existed, so links rendered default blue — wrong against the
+   warm palette and poor contrast on the dark ground. Hover thickens the rule
+   rather than shifting the colour, which would darken on the dark theme. */
+a {
+  color: var(--sauce);
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover { text-decoration-thickness: 2px; }
+
 .site-header {
   max-width: 46rem;
   margin: 0 auto;
@@ -344,6 +355,18 @@ main { max-width: 46rem; margin: 0 auto; }
   color: var(--muted);
   text-align: center;
 }
+
+.site-footer .source {
+  margin: 0.6rem 0 0;
+}
+
+.site-footer .source a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.gh-mark { flex: none; }
 
 .site-footer .credit {
   margin: 0.4rem 0 0;
