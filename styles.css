@@ -230,6 +230,40 @@ main { max-width: 46rem; margin: 0 auto; }
 
 .muted { color: var(--muted); }
 
+/* About panel: same card as the API block, but body copy in the reading serif
+   so it stays part of the page rather than part of the tooling. */
+.about {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.about h2 {
+  margin: 0 0 0.5rem;
+  font-family: var(--display);
+  font-size: 1.9rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--sauce);
+}
+
+.about p { margin: 0 0 0.9rem; }
+.about p:last-child { margin-bottom: 0; }
+
+/* The one word the whole section is really about, pulled out like a quote. */
+.about-prego {
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--cheese);
+  font-style: italic;
+}
+
+.about-prego strong {
+  font-style: normal;
+  color: var(--sauce);
+}
+
 .site-footer {
   max-width: 46rem;
   margin: 3rem auto 0;
