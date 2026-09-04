@@ -30,13 +30,10 @@ export const WORDS = [
   "mamma", "mia", "molto", "sempre", "grande", "gusto"
 ];
 
-export const OPENERS = [
-  "Lasagna ipsum dolor sit amet",
-  "Lorem lasagna al forno",
-  "Ipsum ragu della nonna",
-  "Besciamella ipsum dolor",
-  "Lasagna ipsum sfoglia sottile"
-];
+// The one line the UI checkbox and the README both name by hand. It is a single
+// string, not a pool: promising a specific opening line and then rolling a die
+// over five of them is how the toggle used to deliver it 20% of the time.
+export const CLASSIC_OPENER = "Lasagna ipsum dolor sit amet";
 
 // Italian brainrot: the AI-meme creature names. Kept as whole phrases rather
 // than single tokens, since the joke only survives if the name stays intact.

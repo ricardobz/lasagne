@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { generate, toHtml, toText, MAX_PARAGRAPHS } from "../src/generator.js";
-import { BRAINROT, OPENERS, BRAINROT_OPENERS } from "../src/words.js";
+import { BRAINROT, CLASSIC_OPENER, BRAINROT_OPENERS } from "../src/words.js";
 
 const check = (name, fn) => {
   fn();
@@ -21,9 +21,19 @@ check("clamps out-of-range and junk input", () => {
 });
 
 check("honours the opening line toggle", () => {
-  assert.match(generate(2, true)[0], /^(Lasagna|Lorem|Ipsum|Besciamella) /);
+  // The checkbox quotes this line verbatim, so every run has to deliver it --
+  // not one opener out of a pool that happens to include it.
+  for (let i = 0; i < 100; i++) {
+    assert.ok(generate(2, true)[0].startsWith(CLASSIC_OPENER), "missing classic opener");
+  }
   const plain = generate(20, false);
-  assert.ok(plain.every((p) => !p.startsWith("Lasagna ipsum dolor sit amet")));
+  assert.ok(plain.every((p) => !p.startsWith(CLASSIC_OPENER)));
+});
+
+check("opens only the first paragraph, never the rest", () => {
+  const paragraphs = generate(20, true);
+  assert.ok(paragraphs[0].startsWith(CLASSIC_OPENER));
+  assert.ok(paragraphs.slice(1).every((p) => !p.startsWith(CLASSIC_OPENER)));
 });
 
 check("every paragraph is non-trivial and ends in punctuation", () => {
@@ -38,7 +48,7 @@ check("every paragraph is non-trivial and ends in punctuation", () => {
 check("brainrot never overrides the classic opening line", () => {
   for (let i = 0; i < 40; i++) {
     const first = generate(1, true, true)[0];
-    assert.ok(OPENERS.some((o) => first.startsWith(o)), `not a classic opener: ${first}`);
+    assert.ok(first.startsWith(CLASSIC_OPENER), `not the classic opener: ${first}`);
   }
 });
 
