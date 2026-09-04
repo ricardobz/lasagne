@@ -129,6 +129,43 @@ main { max-width: 46rem; margin: 0 auto; }
   border-radius: 6px;
 }
 
+/* The lasagna's opinion of your paragraph count, next to the input. */
+.mood {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.mood-face {
+  font-size: 1.35rem;
+  line-height: 1;
+  /* Colour emoji ignore the serif stack and vary wildly in metrics. */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.mood-face.is-new { animation: mood-pop 0.28s ease-out; }
+
+.mood-note {
+  font: italic 0.82rem system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+@keyframes mood-pop {
+  0% { transform: scale(0.6) rotate(-12deg); }
+  60% { transform: scale(1.18) rotate(4deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mood-face.is-new { animation: none; }
+}
+
+/* On narrow screens the note crowds the checkboxes out; the face still says it. */
+@media (max-width: 30rem) {
+  .mood-note { display: none; }
+}
+
 .controls input[type="checkbox"] {
   width: 1.05rem;
   height: 1.05rem;

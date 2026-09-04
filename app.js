@@ -5,6 +5,8 @@ const countInput = document.getElementById("count");
 const startWithInput = document.getElementById("startWith");
 const brainrotInput = document.getElementById("brainrot");
 const asHtmlInput = document.getElementById("asHtml");
+const moodFace = document.getElementById("moodFace");
+const moodNote = document.getElementById("moodNote");
 const output = document.getElementById("output");
 const stats = document.getElementById("stats");
 const copyBtn = document.getElementById("copy");
@@ -33,10 +35,41 @@ function render() {
   }
 
   renderCurl();
+  renderMood();
 
   const words = paragraphs.join(" ").split(/\s+/).filter(Boolean).length;
   const chars = toText(paragraphs).length;
   stats.textContent = `${paragraphs.length} paragraphs · ${words} words · ${chars} characters`;
+}
+
+// More paragraphs, more layers, happier lasagna. Ordered by upper bound; the
+// last entry has to cover MAX_PARAGRAPHS.
+const MOODS = [
+  { upTo: 1, face: "\u{1F622}", label: "sad", note: "One sad layer." },
+  { upTo: 3, face: "\u{1F615}", label: "unimpressed", note: "Barely a lasagna." },
+  { upTo: 6, face: "\u{1F642}", label: "content", note: "Now we're baking." },
+  { upTo: 12, face: "\u{1F60B}", label: "delighted", note: "That's a proper pan." },
+  { upTo: 25, face: "\u{1F929}", label: "thrilled", note: "Nonna is proud." },
+  { upTo: MAX_PARAGRAPHS, face: "\u{1F973}", label: "ecstatic", note: "Feeding the whole village!" }
+];
+
+let mood = null;
+
+function renderMood() {
+  const count = paragraphCount();
+  const next = MOODS.find((m) => count <= m.upTo) ?? MOODS[MOODS.length - 1];
+  if (next === mood) return;
+
+  mood = next;
+  moodFace.textContent = next.face;
+  moodFace.setAttribute("role", "img");
+  moodFace.setAttribute("aria-label", `Lasagna is ${next.label}`);
+  moodNote.textContent = next.note;
+
+  // Restart the pop animation on every change, not just the first.
+  moodFace.classList.remove("is-new");
+  void moodFace.offsetWidth;
+  moodFace.classList.add("is-new");
 }
 
 function paragraphCount() {
@@ -123,7 +156,10 @@ copyCurlBtn.addEventListener("click", copyCurl);
 
 // The snippet mirrors the form, so it follows every keystroke rather than
 // waiting for the next bake.
-form.addEventListener("input", renderCurl);
+form.addEventListener("input", () => {
+  renderCurl();
+  renderMood();
+});
 
 // Shareable links: /?paragraphs=8 pre-fills the form.
 const params = new URLSearchParams(location.search);
