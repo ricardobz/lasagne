@@ -44,9 +44,11 @@ function paragraphCount() {
 }
 
 // The API sits on the same origin once deployed; opened from a file:// path
-// there is no origin worth printing, so name the eventual host instead.
+// there is no origin worth printing, so name the deployed host instead.
+const DEPLOYED_ORIGIN = "https://lasagna-ipsum.netlify.app";
+
 function renderCurl() {
-  const base = location.protocol.startsWith("http") ? location.origin : "https://your-site.netlify.app";
+  const base = location.protocol.startsWith("http") ? location.origin : DEPLOYED_ORIGIN;
   const params = new URLSearchParams({
     paragraphs: String(paragraphCount()),
     format: asHtmlInput.checked ? "html" : "text"
