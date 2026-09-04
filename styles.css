@@ -28,6 +28,12 @@
   --sauce: #b3321f;
   --sauce-dark: #8d2416;
   --cheese: #f0b429;
+  /* One repeat of the pan, top to bottom. Kept under 10% alpha so the stack is
+     texture rather than UI signal — the body copy still has to read as type. */
+  --layer-besciamella: rgba(255, 255, 255, 0.85);
+  --layer-pasta: rgba(240, 180, 41, 0.07);
+  --layer-ragu: rgba(179, 50, 31, 0.09);
+  --layer-cheese: rgba(240, 180, 41, 0.16);
   --radius: 10px;
   --display: "Yesteryear", "Brush Script MT", cursive;
 }
@@ -41,6 +47,12 @@
     --line: #3a2f26;
     --sauce: #e0533a;
     --sauce-dark: #c23e28;
+    /* Tints glow on the dark ground, so roughly half the alpha. Besciamella
+       still has to be the lightest layer, so it lifts instead of covering. */
+    --layer-besciamella: rgba(242, 231, 219, 0.07);
+    --layer-pasta: rgba(240, 180, 41, 0.04);
+    --layer-ragu: rgba(224, 83, 58, 0.08);
+    --layer-cheese: rgba(240, 180, 41, 0.09);
   }
 }
 
@@ -212,7 +224,29 @@ main { max-width: 46rem; margin: 0 auto; }
 
 .output-actions { display: flex; gap: 0.5rem; }
 
-.output p { margin: 0 0 1.25rem; }
+/* The output is a pan of lasagna seen from the side: paragraphs stack edge to
+   edge on a repeating four-layer cycle. Padding replaces the old margin so the
+   bands touch — separated tints read as zebra-striped rows, touching ones read
+   as a cross-section. Only the plain-text view gets the pan; the HTML view is a
+   code block and carries its own chrome. */
+.output.is-pan {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.output p {
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+}
+
+.output p + p { border-top: 1px solid var(--line); }
+
+/* Besciamella on top: it opens the pan and every repeat below it. */
+.output p:nth-child(4n + 1) { background: var(--layer-besciamella); }
+.output p:nth-child(4n + 2) { background: var(--layer-pasta); }
+.output p:nth-child(4n + 3) { background: var(--layer-ragu); }
+.output p:nth-child(4n)     { background: var(--layer-cheese); }
 
 .output pre {
   margin: 0;

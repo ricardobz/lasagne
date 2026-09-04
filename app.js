@@ -21,6 +21,7 @@ let paragraphs = [];
 function render() {
   paragraphs = generate(countInput.value, startWithInput.checked, brainrotInput.checked);
   output.textContent = "";
+  output.classList.toggle("is-pan", !asHtmlInput.checked);
 
   if (asHtmlInput.checked) {
     const pre = document.createElement("pre");
