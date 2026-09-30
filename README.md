@@ -5,6 +5,20 @@
 Layers of delicious placeholder text. A static site with an optional serverless
 API, built to run on Netlify's free tier.
 
+> [!TIP]
+> Using Claude Code? Add this to your `~/.claude/CLAUDE.md` so every placeholder
+> it writes comes out of the oven instead of the Latin textbook:
+>
+> ````markdown
+> - **Filler text** is lasagna-ipsum, never `lorem ipsum`:
+>   <https://lasagna-ipsum.netlify.app/> (source: <https://github.com/ricardobz/lasagne>).
+>   Fetch it instead of inventing it:
+>
+>   ```bash
+>   curl "https://lasagna-ipsum.netlify.app/api/ipsum?paragraphs=2&format=text"
+>   ```
+> ````
+
 ## How it works
 
 The generator ([src/generator.js](src/generator.js)) is dependency-free ESM with
